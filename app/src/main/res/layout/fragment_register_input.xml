@@ -1,0 +1,70 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fanbo.sharingitime.activity.fragment.RegisterInputFragment">
+
+
+    <TextView
+        android:textColor="@color/white"
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="注册账号"
+        android:textSize="36sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_input_mobile"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/tv_edit_hint"
+        android:layout_marginEnd="@dimen/button_margin_48"
+        android:layout_marginStart="@dimen/button_margin_48"
+        android:background="@drawable/shape_login_button_storek"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_mobile_number_Email"
+            style="@style/register_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="@string/input_mobile_number_or_email" />
+
+
+        <ImageView
+            android:id="@+id/iv_cancel"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:paddingEnd="6dp"
+            android:src="@drawable/ic_cancel"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        style="@style/register_button"
+        android:layout_width="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ll_input_mobile"
+        android:layout_marginTop="24dp"
+        android:text="@string/next_step" />
+
+    <TextView
+        android:id="@+id/tv_edit_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/ll_input_mobile"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="12dp"
+        android:paddingStart="6dp"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:visibility="invisible" />
+
+</RelativeLayout>

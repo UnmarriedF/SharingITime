@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rg_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:gravity="center_horizontal"
+        android:id="@+id/rbtn_share"
+        style="@style/radioButton"
+        android:drawableTop="@drawable/share_selector" />
+
+    <RadioButton
+        android:id="@+id/rbtn_message"
+        style="@style/radioButton"
+        android:drawableTop="@drawable/message_selector" />
+
+    <RadioButton
+        android:id="@+id/rbtn_tools"
+        style="@style/radioButton"
+        android:drawableTop="@drawable/tools_selector" />
+
+    <RadioButton
+        android:id="@+id/rbtn_me"
+        style="@style/radioButton"
+        android:drawableTop="@drawable/me_selector" />
+</RadioGroup>
