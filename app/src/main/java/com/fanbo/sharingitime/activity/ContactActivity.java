@@ -9,8 +9,11 @@ import com.fanbo.sharingitime.adapter.ContactListAdapter;
 import com.fanbo.sharingitime.adapter.ContactListChoiceAdapter;
 import com.fanbo.sharingitime.biz.ContactBiz;
 import com.fanbo.sharingitime.entity.UserEntity;
+import com.fanbo.sharingitime.https.BmobHttp;
 
 import java.util.List;
+
+import cn.bmob.v3.BmobObject;
 
 public class ContactActivity extends BaseActivity {
 
@@ -54,7 +57,12 @@ public class ContactActivity extends BaseActivity {
     }
 
     private void loadContactList() {
-        List<UserEntity> userEntityList = contactBiz.getContactList();
-        adapter.addData(userEntityList);
+        int friendsNum = contactBiz.getContactList(new BmobHttp.OnBmobObjectQueryListener() {
+            @Override
+            public void onQueryEnd(BmobObject bmobObject) {
+
+            }
+        });
+        // TODO: 2017/7/4    数据加载完毕，更新recycle
     }
 }

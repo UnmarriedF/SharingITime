@@ -6,7 +6,7 @@ import android.os.Handler;
 
 import com.fanbo.sharingitime.activity.MyApplication;
 import com.fanbo.sharingitime.entity.UserEntity;
-import com.fanbo.sharingitime.https.BmobSaveFile;
+import com.fanbo.sharingitime.https.BmobHttp;
 import com.fanbo.sharingitime.https.HXHttp;
 import com.fanbo.sharingitime.util.Const;
 import com.fanbo.sharingitime.util.ExceptionUtil;
@@ -71,7 +71,7 @@ public class RegisterBiz {
     public void saveUser(final UserEntity userEntity) {
         this.unregisterEventHandler();
         // TODO: 2017/6/30  保存头像
-        //BmobSaveFile.setUserHeaderImg(userEntity).
+        //BmobHttp.setUserHeaderImg(userEntity).
         userEntity.signUp(new SaveListener<UserEntity>() {
             @Override
             public void done(UserEntity userEntity, BmobException e) {
@@ -100,7 +100,7 @@ public class RegisterBiz {
             public void done(UserEntity userEntity, BmobException e) {
                 if (e == null) {
                     //登陆成功，更新头像
-                    BmobSaveFile.updateUserToBmob(userEntity);
+                    BmobHttp.updateUserToBmob(userEntity);
                     mHandler.sendEmptyMessage(Const.LOGIN_SUCCESS);
                     //登陆聊天账号
                     new HXHttp().loginHX(userEntity);

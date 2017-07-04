@@ -1,7 +1,6 @@
 package com.fanbo.sharingitime.https;
 
 import android.net.Uri;
-import android.text.InputFilter;
 import android.text.TextUtils;
 
 import com.fanbo.sharingitime.db.SharePreferencesUtil;
@@ -10,8 +9,11 @@ import com.fanbo.sharingitime.util.ExceptionUtil;
 
 import java.io.File;
 
+import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
 
@@ -20,13 +22,13 @@ import cn.bmob.v3.listener.UploadFileListener;
  * Created by fanbo on 2017/6/30.
  */
 
-public class BmobSaveFile {
+public class BmobHttp {
     /**
      * 更新用户信息到Bmob后台
      * @param userEntity
      */
     public static void updateUserToBmob(UserEntity userEntity) {
-        BmobSaveFile.setUserHeaderImg(userEntity);
+        BmobHttp.setUserHeaderImg(userEntity);
     }
 
     /**
@@ -40,7 +42,7 @@ public class BmobSaveFile {
         sp.saveData("username",userEntity.getUsername());
         String headerImg = sp.getData("headerImg");
         if (!TextUtils.isEmpty(headerImg)) {
-            BmobSaveFile.saveFile(headerImg, new OnBmobFileLoadListener() {
+            BmobHttp.saveFile(headerImg, new OnBmobFileLoadListener() {
                 @Override
                 public void onFileLoadEnd(String fileUrl, BmobFile file) {
                     userEntity.setHeaderPath(fileUrl);
@@ -83,5 +85,27 @@ public class BmobSaveFile {
      */
     public interface OnBmobFileLoadListener{
         void onFileLoadEnd(String fileUrl,BmobFile file);
+    }
+    /**
+     * Bmob文件查询监听接口
+     */
+    public interface OnBmobObjectQueryListener{
+        void onQueryEnd(BmobObject bmobObject);
+    }
+    /**
+     * Bmob查询单个文件
+     */
+    public static void getSingleBmobObject(String objectId, final OnBmobObjectQueryListener onBmobObjectQueryListener){
+        BmobQuery<UserEntity> query = new BmobQuery<>();
+        query.getObject("objectId", new QueryListener<UserEntity>() {
+            @Override
+            public void done(UserEntity userEntity, BmobException e) {
+                if (e==null){
+                    onBmobObjectQueryListener.onQueryEnd(userEntity);
+                }else {
+                    ExceptionUtil.handleException(e);
+                }
+            }
+        });
     }
 }

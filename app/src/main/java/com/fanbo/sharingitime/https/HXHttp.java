@@ -61,7 +61,17 @@ public class HXHttp {
         }.start();
     }
 
-    public List<String> getFriendList(UserEntity userEntity){
+    public List<String> getFriendList(){
+        new Thread(){
+            @Override
+            public void run() {
+                try {
+                    List<String> friends = EMClient.getInstance().contactManager().getAllContactsFromServer();
+                } catch (HyphenateException e) {
+                    ExceptionUtil.handleException(e);
+                }
+            }
+        }.start();
         return null;
     }
 }

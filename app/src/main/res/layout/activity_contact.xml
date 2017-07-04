@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/button_margin_48"
             android:layout_weight="2">
-            <!--todo 晚上联系人聊天和群组选择-->
+            <!--todo 完善联系人聊天和群组选择-->
         </android.support.v7.widget.RecyclerView>
 
         <EditText
