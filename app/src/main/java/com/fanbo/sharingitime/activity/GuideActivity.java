@@ -7,6 +7,9 @@ import com.fanbo.sharingitime.R;
 import com.fanbo.sharingitime.adapter.GuideVPAdapter;
 import com.fanbo.sharingitime.widget.GuideCircleView;
 
+/**
+ * 引导界面
+ */
 public class GuideActivity extends BaseActivity {
 
     private ViewPager vp;

@@ -65,7 +65,6 @@ public class RegisterBiz {
 
     /**
      * 保存用户到Bmob、环信、偏好设置
-     *
      * @param userEntity
      */
     public void saveUser(final UserEntity userEntity) {

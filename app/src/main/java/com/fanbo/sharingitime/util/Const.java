@@ -14,6 +14,10 @@ public interface Const {
      */
     int SEND_VERIFICATION_Failed = 0;
     /**
+     * 注册成功
+     */
+    int REGISTER_SUCCESS = 300;
+    /**
      * 登陆成功
      */
     int LOGIN_SUCCESS = 301;
@@ -22,9 +26,13 @@ public interface Const {
      */
     int LOGIN_FALED = 302;
     /**
-     * 注册成功
+     * 请求好友列表成功
      */
-    int REGISTER_SUCCESS = 300;
+    int GET_FRIENDS_SUCCESS = 303;
+    /**
+     * 请求好友列表失败
+     */
+    int GET_FRIENDS_FAILED = 304;
     /**
      * 注册环信密码
      */

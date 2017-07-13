@@ -61,17 +61,26 @@ public class HXHttp {
         }.start();
     }
 
-    public List<String> getFriendList(){
-        new Thread(){
+    /**
+     * 向环信请求好友列表
+     * @return
+     */
+    public void getFriendList(final GetHXFriendListListener getHXFriendListListener) {
+        new Thread() {
             @Override
             public void run() {
                 try {
+                    //从环信获取好友信息，然后Bmob根据好友名字查询好友详细信息
                     List<String> friends = EMClient.getInstance().contactManager().getAllContactsFromServer();
+                    getHXFriendListListener.onGetHXFriedns(friends);
                 } catch (HyphenateException e) {
                     ExceptionUtil.handleException(e);
                 }
             }
         }.start();
-        return null;
+    }
+
+    public interface GetHXFriendListListener{
+        void onGetHXFriedns(List<String> list);
     }
 }

@@ -45,7 +45,6 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        //绑定数据
 
     }
 

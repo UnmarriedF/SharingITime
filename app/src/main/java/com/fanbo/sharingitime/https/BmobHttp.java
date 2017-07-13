@@ -8,11 +8,13 @@ import com.fanbo.sharingitime.entity.UserEntity;
 import com.fanbo.sharingitime.util.ExceptionUtil;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
-import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.QueryListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
@@ -64,6 +66,11 @@ public class BmobHttp {
         }
     }
 
+    /**
+     * Bmob文件保存
+     * @param path
+     * @param loadListener
+     */
     public static void saveFile(String path, final OnBmobFileLoadListener loadListener){
         Uri uri = Uri.parse(path);
         String filePath = uri.getPath();
@@ -90,7 +97,7 @@ public class BmobHttp {
      * Bmob文件查询监听接口
      */
     public interface OnBmobObjectQueryListener{
-        void onQueryEnd(BmobObject bmobObject);
+        void onQueryEnd(Object object);
     }
     /**
      * Bmob查询单个文件
@@ -107,5 +114,34 @@ public class BmobHttp {
                 }
             }
         });
+    }
+
+    public static void getFriendsList(List<Object> list, final BmobHttp.OnBmobFriendsQueryListener listener){
+        List<BmobQuery> queryList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            BmobQuery<UserEntity> query = new BmobQuery<>();
+            query.addWhereEqualTo("username",list.get(i));
+            queryList.add(query);
+        }
+        BmobQuery mainQuery = new BmobQuery<>();
+        mainQuery.or(queryList);
+        mainQuery.findObjects(new FindListener<UserEntity>() {
+            @Override
+            public void done(List<UserEntity> list, BmobException e) {
+                if (e==null){
+                    //查询列表成功
+                    listener.onFriendListLoadEnd(list);
+                }else {
+                    //查询列表失败
+                }
+            }
+        });
+
+    }
+    /**
+     * 联系人列表查询监听
+     */
+    public interface OnBmobFriendsQueryListener{
+        void onFriendListLoadEnd(List<UserEntity> list);
     }
 }
