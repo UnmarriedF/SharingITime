@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="36dp"
+    android:layout_height="48dp"
     android:orientation="vertical">
     <ImageView
         android:visibility="gone"
@@ -24,13 +24,13 @@
         android:text="@string/chat_message"
         android:id="@+id/tv_title_mid"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
     <TextView
         android:visibility="gone"
-        android:text="搜素"
+        android:text="搜索"
         android:layout_alignParentRight="true"
         android:textSize="16sp"
         android:textColor="@color/black"
@@ -41,12 +41,15 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
     <ImageView
-
-        android:padding="6dp"
         android:visibility="gone"
         android:layout_alignParentRight="true"
-        android:src="@drawable/x"
         android:id="@+id/iv_title_right"
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:background="#55808080"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 </RelativeLayout>

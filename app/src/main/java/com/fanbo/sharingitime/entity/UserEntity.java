@@ -8,8 +8,26 @@ import cn.bmob.v3.datatype.BmobFile;
  */
 
 public class UserEntity extends BmobUser {
+    /**
+     * 临时使用
+     */
     private BmobFile headerImg;
+    /**
+     * 头像路径
+     */
     private String headerPath;
+    /**
+     * 个性化姓名
+     */
+    private String pickName;
+    public String getPickName() {
+        return pickName;
+    }
+
+    public void setPickName(String pickName) {
+        this.pickName = pickName;
+    }
+
 
     public String getHeaderPath() {
         return headerPath;

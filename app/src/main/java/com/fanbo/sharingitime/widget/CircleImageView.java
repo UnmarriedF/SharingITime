@@ -21,7 +21,7 @@ import com.fanbo.sharingitime.R;
  * Created by fanbo on 2017/6/13.
  */
 
-public class CircleImageView extends ImageView {
+public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
     private Paint mPaintBorder;
     private Paint mPaintCircle;
     /**
@@ -76,6 +76,9 @@ public class CircleImageView extends ImageView {
     private void setBitmapShader() {
         //将图片转换成bitmap
         Drawable drawable = getDrawable();
+        if (!(drawable instanceof BitmapDrawable)){
+            drawable = getResources().getDrawable(R.drawable.aaaaa);
+        }
         BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
         Bitmap bitmap = bitmapDrawable.getBitmap();
         //将bitmap放进图像着色器，后面两个模式是x，y轴的缩放模式，CLAMP表示拉伸

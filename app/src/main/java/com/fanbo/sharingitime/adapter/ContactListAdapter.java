@@ -5,9 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.fanbo.sharingitime.R;
 import com.fanbo.sharingitime.entity.UserEntity;
 import com.fanbo.sharingitime.widget.CircleImageView;
@@ -23,7 +25,6 @@ import java.util.List;
 public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.ViewHolder> {
     private Context mContext;
     private List<UserEntity> userEntities;
-
     public ContactListAdapter(Context context) {
         if (userEntities==null){
             userEntities = new ArrayList<>();
@@ -45,7 +46,9 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        UserEntity userEntity = userEntities.get(position);
+        Glide.with(mContext).load(userEntity.getHeaderPath()).into(holder.civ);
+        holder.tvName.setText(userEntity.getUsername());
     }
 
     @Override
@@ -55,12 +58,12 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         CircleImageView civ;
-        RadioButton rbtn ;
+        CheckBox checkBox ;
         TextView tvName ;
         public ViewHolder(View itemView) {
             super(itemView);
             civ = (CircleImageView) itemView.findViewById(R.id.civ_head);
-            rbtn = (RadioButton) itemView.findViewById(R.id.rbtn_contact_list_choice);
+            checkBox = (CheckBox) itemView.findViewById(R.id.rbtn_contact_list_choice);
             tvName = (TextView) itemView.findViewById(R.id.tv_contact_list_name);
         }
     }

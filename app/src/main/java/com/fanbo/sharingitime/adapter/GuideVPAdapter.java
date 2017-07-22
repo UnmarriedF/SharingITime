@@ -44,7 +44,6 @@ public class GuideVPAdapter extends PagerAdapter {
         Glide.with(iv.getContext()).load(images[position]).into(iv);
 
         if (position==3) {
-            ToastUtil.show("2323");
             Button btn = (Button) relativeLayout.findViewById(R.id.btn_guide);
             btn.setVisibility(View.VISIBLE);
             btn.setOnClickListener(new View.OnClickListener() {

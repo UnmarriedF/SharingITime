@@ -17,7 +17,7 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
     /**
      * 适配数据的集合
      */
-    private List<T> mList = new ArrayList<>();
+    protected List<T> mList = new ArrayList<>();
     /**
      * 布局解析器
      */

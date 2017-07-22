@@ -116,7 +116,7 @@ public class BmobHttp {
         });
     }
 
-    public static void getFriendsList(List<Object> list, final BmobHttp.OnBmobFriendsQueryListener listener){
+    public static void getFriendsList(List<String> list, final OnBmobFriendsQueryListener listener){
         List<BmobQuery> queryList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             BmobQuery<UserEntity> query = new BmobQuery<>();
@@ -142,6 +142,10 @@ public class BmobHttp {
      * 联系人列表查询监听
      */
     public interface OnBmobFriendsQueryListener{
+        /**
+         * Bmob联系人列表查询完毕调用
+         * @param list 查询完毕的联系人详细信息列表
+         */
         void onFriendListLoadEnd(List<UserEntity> list);
     }
 }

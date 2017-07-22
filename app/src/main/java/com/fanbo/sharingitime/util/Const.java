@@ -61,4 +61,9 @@ public interface Const {
      * 图片保存位置
      */
     String SAVE_IMG = "image/";
+
+    /**
+     * 新闻查询AppKey
+     */
+    String TITLE_NEWS_APP_KEY = "7bb021e0760723f7";
 }

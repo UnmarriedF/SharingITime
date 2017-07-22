@@ -48,4 +48,16 @@ public class StringUtil {
         }
         return isMobile || isEmail;
     }
+
+
+    public  static String getNewsUrl(int start ,int num,String type){
+        //url资源
+        //     http://api.jisuapi.com/news/get?channel=头条&start=0&num=10&appkey=yourappkey
+        //    appkey  7bb021e0760723f7
+        String baseUrl1 = "http://api.jisuapi.com/news/get?channel="+type+"&start=";
+        String baseUrl2 = "&num=";
+        String baseUrl3 = "&appkey=7bb021e0760723f7";
+        baseUrl1 = baseUrl1 + start +baseUrl2 + num +baseUrl3;
+        return baseUrl1;
+    }
 }

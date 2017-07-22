@@ -4,6 +4,8 @@ package com.fanbo.sharingitime.biz;
 import android.os.Handler;
 import android.os.Message;
 
+import com.fanbo.sharingitime.entity.UserEntity;
+import com.fanbo.sharingitime.https.BmobHttp;
 import com.fanbo.sharingitime.https.HXHttp;
 import com.fanbo.sharingitime.util.Const;
 
@@ -14,7 +16,7 @@ import java.util.List;
  * Created by fanbo on 2017/6/20.
  */
 
-public class ContactBiz {
+public class ContactBiz implements BmobHttp.OnBmobFriendsQueryListener {
     private Handler mHandler;
 
     public ContactBiz(Handler handler) {
@@ -31,14 +33,26 @@ public class ContactBiz {
             @Override
             public void onGetHXFriedns(List<String> list) {
                 if (list.size()>0){
-                    Message message = mHandler.obtainMessage();
-                    message.obj = list;
-                    message.what = Const.GET_FRIENDS_SUCCESS;
-                    mHandler.sendMessage(message);
+                    //向Bmob发起请求，请求联系人的详细数据
+                    BmobHttp.getFriendsList(list,ContactBiz.this);
                 }else {
                     mHandler.sendEmptyMessage(Const.GET_FRIENDS_FAILED);
                 }
             }
         });
+    }
+
+    @Override
+    public void onFriendListLoadEnd(List<UserEntity> list) {
+        if (list.size()>0){
+            //查询成功，向Activity发消息，传递列表
+            Message message = mHandler.obtainMessage();
+            message.obj = list;
+            message.what = Const.GET_FRIENDS_SUCCESS;
+            mHandler.sendMessage(message);
+        }else {
+            //查询失败
+            mHandler.sendEmptyMessage(Const.GET_FRIENDS_FAILED);
+        }
     }
 }

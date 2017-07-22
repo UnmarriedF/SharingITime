@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3.5">
+        android:layout_weight="3">
 
         <ImageView
             android:id="@+id/iv_back"
@@ -39,7 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6">
-
     </FrameLayout>
 
     <RelativeLayout
@@ -47,17 +46,23 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="vertical">
-        <include layout="@layout/third_login" />
+        <include
+            android:layout_centerInParent="true"
+            layout="@layout/third_login"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" />
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:gravity="center"
+            android:text="注册即代表同意SharingITime《服务条款》和《隐私条款》"
+            android:textColor="@color/white"
+            android:textSize="10sp" />
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
-        android:gravity="center"
-        android:text="注册即代表同意SharingITime《服务条款》和《隐私条款》"
-        android:textColor="@color/white"
-        android:textSize="10sp" />
+
 
 
 </LinearLayout>

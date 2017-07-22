@@ -52,7 +52,7 @@ public class GuideCircleView extends View {
     protected void onDraw(Canvas canvas) {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(3);
-        paint.setColor(Color.BLACK);
+        paint.setColor(Color.WHITE);
         //绘制n个空心圆
         for (int i = 0; i < circleNum; i++) {
             int distance =  i  * 8 * radius;
@@ -61,7 +61,7 @@ public class GuideCircleView extends View {
         //绘制一个实心圆
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.RED);
-        canvas.drawCircle(fillStartPos, height / 2, radius - 6, paint);
+        canvas.drawCircle(fillStartPos, height / 2, radius, paint);
     }
 
     public void change(int position, float offset) {

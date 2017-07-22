@@ -3,6 +3,7 @@ package com.fanbo.sharingitime.https;
 import com.fanbo.sharingitime.entity.UserEntity;
 import com.fanbo.sharingitime.util.Const;
 import com.fanbo.sharingitime.util.ExceptionUtil;
+import com.fanbo.sharingitime.util.LogUtil;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;

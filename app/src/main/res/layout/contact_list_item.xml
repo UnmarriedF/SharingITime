@@ -4,7 +4,7 @@
     android:layout_height="60.0dip"
     android:orientation="horizontal">
 
-    <RadioButton
+    <CheckBox
         android:id="@+id/rbtn_contact_list_choice"
         android:layout_width="@dimen/layout_24"
         android:layout_height="@dimen/layout_24"
@@ -16,13 +16,16 @@
 
     <com.fanbo.sharingitime.widget.CircleImageView
         android:id="@+id/civ_head"
-        android:layout_width="60.0dip"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        android:layout_width="48.0dip"
         android:layout_height="fill_parent"
         android:layout_marginStart="18dp"
         android:padding="5.0dip"
         android:src="@drawable/little_huang" />
 
     <TextView
+        android:gravity="center_vertical"
         android:id="@+id/tv_contact_list_name"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

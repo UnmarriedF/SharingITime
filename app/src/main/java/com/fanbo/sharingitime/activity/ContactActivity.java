@@ -5,10 +5,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.RelativeLayout;
 
 import com.fanbo.sharingitime.R;
 import com.fanbo.sharingitime.adapter.ContactListAdapter;
 import com.fanbo.sharingitime.adapter.ContactListChoiceAdapter;
+import com.fanbo.sharingitime.adapter.SpaceItemDecoration;
 import com.fanbo.sharingitime.biz.ContactBiz;
 import com.fanbo.sharingitime.entity.UserEntity;
 import com.fanbo.sharingitime.https.BmobHttp;
@@ -45,11 +47,14 @@ public class ContactActivity extends BaseActivity {
     }
 
     private void initView() {
+        titlebar = (RelativeLayout) findViewById(R.id.title_bar);
+        initTitleBar(R.drawable.back,null,"联系人",null,0);
         contactListHandler = new ContactListHandler();
         //联系人列表
+        rvContactList = (RecyclerView) findViewById(R.id.rv_contact_list);
+        rvContactList.addItemDecoration(new SpaceItemDecoration(20));
         contactListManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rvContactList.setLayoutManager(contactListManager);
-        rvContactList = (RecyclerView) findViewById(R.id.rv_contact_list);
         adapter = new ContactListAdapter(this);
         rvContactList.setAdapter(adapter);
         //选中联系人列表
@@ -74,9 +79,15 @@ public class ContactActivity extends BaseActivity {
                     break;
                 case Const.GET_FRIENDS_FAILED:
                     // TODO: 2017/7/11 获取好友失败，吐司提示
-
                     break;
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        //释放资源
+        contactBiz = null;
+        super.onDestroy();
     }
 }
