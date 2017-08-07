@@ -28,14 +28,6 @@ public class ShareFragment extends BaseFragment {
     private ShareVPAdapter vpAdapter;
     private ImageView ivAdd;
     private ImageView ivMakeShare;
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        RadioButton rbtn = (RadioButton) tabGroup.getChildAt(0);
-        rbtn.setChecked(true);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,7 +82,7 @@ public class ShareFragment extends BaseFragment {
         fragments[1] = new ConcertFragment();
         fragments[2] = new CommendFragment();
         vp = (ViewPager) contentView.findViewById(R.id.vp_share);
-        vpAdapter = new ShareVPAdapter(getChildFragmentManager(),fragments);
+        vpAdapter = new ShareVPAdapter(getChildFragmentManager(), fragments);
         vp.setAdapter(vpAdapter);
         tabGroup = (TabGroup) contentView.findViewById(R.id.rg_title);
         ivAdd = (ImageView) contentView.findViewById(R.id.iv_add);

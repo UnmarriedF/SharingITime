@@ -97,4 +97,5 @@ public class ShareBiz {
     public interface GetTitleNewsListener{
       void   onDataGetEnd (List<TitleNews.ResultBean.ListBean> listBeen);
     }
+
 }

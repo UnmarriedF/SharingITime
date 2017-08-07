@@ -1,8 +1,10 @@
 package com.fanbo.sharingitime.widget;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -76,11 +78,13 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
     private void setBitmapShader() {
         //将图片转换成bitmap
         Drawable drawable = getDrawable();
+        Bitmap bitmap;
         if (!(drawable instanceof BitmapDrawable)){
-            drawable = getResources().getDrawable(R.drawable.aaaaa);
+            bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.aaaaa);
+        }else {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            bitmap = bitmapDrawable.getBitmap();
         }
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-        Bitmap bitmap = bitmapDrawable.getBitmap();
         //将bitmap放进图像着色器，后面两个模式是x，y轴的缩放模式，CLAMP表示拉伸
         mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         //初始化图片与view之间伸缩比例，因为比例一般非整数，所以用float，免得精度丢失
