@@ -18,7 +18,6 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void run() {
                 if (!MyApplication.isFirstLogin) {
-                    // TODO: 2017/6/30 删除 测试跳过引导界面
                     startActivity(new Intent(WelcomeActivity.this, GuideActivity.class));
                 } else {
                     startActivity(new Intent(WelcomeActivity.this, MainActivity.class));

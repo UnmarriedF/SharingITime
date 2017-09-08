@@ -1,10 +1,13 @@
 package com.fanbo.sharingitime.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.fanbo.sharingitime.R;
@@ -14,7 +17,9 @@ import com.fanbo.sharingitime.adapter.SpaceItemDecoration;
 import com.fanbo.sharingitime.biz.ContactBiz;
 import com.fanbo.sharingitime.entity.UserEntity;
 import com.fanbo.sharingitime.https.BmobHttp;
+import com.fanbo.sharingitime.listener.RVOnItemClickListener;
 import com.fanbo.sharingitime.util.Const;
+import com.fanbo.sharingitime.util.ToastUtil;
 
 import java.util.List;
 
@@ -23,7 +28,7 @@ import cn.bmob.v3.BmobObject;
 /**
  * 联系人界面
  */
-public class ContactActivity extends BaseActivity {
+public class ContactActivity extends BaseActivity implements View.OnClickListener {
 
     private RecyclerView rvContactList;
     private ContactListAdapter adapter;
@@ -33,6 +38,7 @@ public class ContactActivity extends BaseActivity {
     private ContactListChoiceAdapter choiceAdapter;
     private ContactBiz contactBiz;
     private Handler contactListHandler;
+    private ImageView ivBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +49,32 @@ public class ContactActivity extends BaseActivity {
     }
 
     private void addListener() {
+        rvContactList.addOnItemTouchListener(new RVOnItemClickListener(rvContactList) {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder holder, int position) {
+                //点击跳转到聊天界面
+                UserEntity userEntity = adapter.getItemData(position);
+                if (userEntity==null){
+                    ToastUtil.show("该用户不是好友,添加好友聊天");
+                    return;
+                }
+                Intent intent =new Intent(ContactActivity.this,ChatActivity.class);
+                intent.putExtra("chatData",userEntity);
+                startActivity(intent);
+            }
+        });
+        ivBack.setOnClickListener(this);
+    }
 
+    @Override
+    public void onClick(View v) {
+       onBackPressed();
     }
 
     private void initView() {
         titlebar = (RelativeLayout) findViewById(R.id.title_bar);
         initTitleBar(R.drawable.back,null,"联系人",null,0);
+        ivBack = (ImageView) titlebar.findViewById(R.id.iv_title_left);
         contactListHandler = new ContactListHandler();
         //联系人列表
         rvContactList = (RecyclerView) findViewById(R.id.rv_contact_list);
@@ -79,11 +105,11 @@ public class ContactActivity extends BaseActivity {
                     break;
                 case Const.GET_FRIENDS_FAILED:
                     // TODO: 2017/7/11 获取好友失败，吐司提示
+                    ToastUtil.show("获取好友失败");
                     break;
             }
         }
     }
-
     @Override
     protected void onDestroy() {
         //释放资源

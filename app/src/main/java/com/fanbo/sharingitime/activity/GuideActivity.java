@@ -50,6 +50,7 @@ public class GuideActivity extends BaseActivity {
         vp = (ViewPager) findViewById(R.id.vp_guide);
         adapter = new GuideVPAdapter(this, images);
         vp.setAdapter(adapter);
+        vp.setCurrentItem(0);
         circleView = (GuideCircleView) findViewById(R.id.cv_guide);
     }
 }

@@ -4,8 +4,13 @@ import android.app.Application;
 import android.content.Context;
 
 import com.fanbo.sharingitime.db.SharePreferencesUtil;
+import com.fanbo.sharingitime.util.ToastUtil;
+import com.hyphenate.EMMessageListener;
 import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMMessage;
 import com.hyphenate.chat.EMOptions;
+
+import java.util.List;
 
 import cn.bmob.v3.Bmob;
 
@@ -32,7 +37,7 @@ public class MyApplication extends Application {
         //获取首次登陆状态
         SharePreferencesUtil sp = new SharePreferencesUtil();
         // TODO: 2017/6/22  更改为从偏好获取
-        isFirstLogin = (sp.getUser().getUsername()!=null);
+        //isFirstLogin = (sp.getUser().getUsername()!=null);
         //初始化Bmob
         Bmob.initialize(this, "d3fcaeec29070d4fd74d776775c72bdb");
         //初始化环信

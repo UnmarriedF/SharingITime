@@ -38,6 +38,10 @@ public interface Const {
      */
     String HX_PASSWORD ="123456";
     /**
+     * 环信获取会话列表成功
+     */
+    int HX_MESSAGE_LIST_SUCCESS = 306;
+    /**
      * 调用手机相册
      */
     int SELECT_PHOTO_ABLUM = 200;

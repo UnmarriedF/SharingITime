@@ -42,6 +42,7 @@ public class CommendFragment extends BaseFragment {
     }
     private void initView() {
         sr = (SwipeRefreshLayout) contentView.findViewById(R.id.sr_concert);
+        sr.setColorSchemeResources(R.color.mainblue,R.color.limegreen,R.color.colorAccent);
         lv = (ListView) contentView.findViewById(R.id.lv_concert);
         adapter = new ConcertRVAdapter(getActivity());
         lv.setAdapter(adapter);

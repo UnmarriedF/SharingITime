@@ -80,7 +80,6 @@ public class RegisterBiz {
                     //创建聊天账号（环信）
                     new HXHttp().creatCount(userEntity);
                 } else {
-                    // TODO: 2017/6/22 bmob注册失败
                     ExceptionUtil.handleException(e);
                     ToastUtil.show(MyApplication.applicationContext, "注册失败");
                 }
@@ -104,7 +103,6 @@ public class RegisterBiz {
                     //登陆聊天账号
                     new HXHttp().loginHX(userEntity);
                 } else {
-                    // TODO: 2017/6/22 bmob账号登陆失败
                     if (e.getErrorCode() == 202) {
                         ToastUtil.show("账号已存在.请重新设置账号");
                     } else {

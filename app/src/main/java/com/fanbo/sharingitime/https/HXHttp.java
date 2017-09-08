@@ -11,7 +11,7 @@ import com.hyphenate.exceptions.HyphenateException;
 import java.util.List;
 
 /**
- * 环信数据处理
+ * 环信登录、联系人数据处理
  * Created by fanbo on 2017/7/2.
  */
 
@@ -76,6 +76,7 @@ public class HXHttp {
                     getHXFriendListListener.onGetHXFriedns(friends);
                 } catch (HyphenateException e) {
                     ExceptionUtil.handleException(e);
+                    getHXFriendListListener.onGetHXFriedns(null);
                 }
             }
         }.start();

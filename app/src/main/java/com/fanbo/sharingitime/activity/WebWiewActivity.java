@@ -7,7 +7,7 @@ import android.webkit.WebViewClient;
 
 import com.fanbo.sharingitime.R;
 
-public class WebWiewActivity extends AppCompatActivity {
+public class WebWiewActivity extends BaseActivity {
 
     private WebView webView;
 

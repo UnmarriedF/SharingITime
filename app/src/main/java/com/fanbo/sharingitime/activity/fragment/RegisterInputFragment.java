@@ -82,11 +82,12 @@ public class RegisterInputFragment extends BaseFragment {
         etMobileEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
-
+                //输入之前
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+                //输入时
                 if (count > 0) {
                     tvHint.setText(R.string.input_mobile_number_or_email);
                     tvHint.setVisibility(View.VISIBLE);
@@ -96,6 +97,7 @@ public class RegisterInputFragment extends BaseFragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                //在输入完成之后
                 if (editable.toString().length() == 0) {
                     tvHint.setVisibility(View.INVISIBLE);
                     ivCancel.setVisibility(View.INVISIBLE);

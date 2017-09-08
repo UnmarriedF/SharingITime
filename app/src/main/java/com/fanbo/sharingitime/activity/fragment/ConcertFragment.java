@@ -1,6 +1,7 @@
 package com.fanbo.sharingitime.activity.fragment;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -65,6 +66,7 @@ public class ConcertFragment extends BaseFragment {
 
     private void initView() {
         sr = (SwipeRefreshLayout) contentView.findViewById(R.id.sr_concert);
+        sr.setColorSchemeResources(R.color.mainblue,R.color.limegreen,R.color.colorAccent);
         lv = (ListView) contentView.findViewById(R.id.lv_concert);
         adapter = new ConcertRVAdapter(getActivity());
         lv.setAdapter(adapter);

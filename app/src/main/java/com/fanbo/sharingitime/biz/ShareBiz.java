@@ -27,17 +27,15 @@ import rx.schedulers.Schedulers;
  */
 
 public class ShareBiz {
-
-
     /**
      * okhttp访问网络资源
      */
-    public void getTitleNewsDateOKHTTP(int start, int num,String type, final GetTitleNewsListener getTitleNewsListener){
+    public void getTitleNewsDateOKHTTP(int start, int num, String type, final GetTitleNewsListener getTitleNewsListener) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder().readTimeout(5, TimeUnit.SECONDS)
                 .build();
         //创建网络请求，如果没有设置，默认为get
         //在请求的对象里面传入连接
-        Request request = new Request.Builder().url(StringUtil.getNewsUrl(start,num,type)).build();
+        Request request = new Request.Builder().url(StringUtil.getNewsUrl(start, num, type)).build();
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
             @Override
@@ -48,18 +46,19 @@ public class ShareBiz {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                TitleNews titleNews = gson.fromJson(response.body().string(),TitleNews.class);
+                TitleNews titleNews = gson.fromJson(response.body().string(), TitleNews.class);
                 List<TitleNews.ResultBean.ListBean> listBeen = titleNews.getResult().getList();
                 getTitleNewsListener.onDataGetEnd(listBeen);
             }
         });
 
     }
+
     /**
      * retrofit + rxjava访问网络资源
      */
 
-    public void getTitleNewsDateRETROFIT(Subscriber<TitleNews> subscriber, int start, int num, String type){
+    public void getTitleNewsDateRETROFIT(Subscriber<TitleNews> subscriber, int start, int num, String type) {
         //   http://api.jisuapi.com/news/get?channel=头条&start=0&num=10&appkey=yourappkey
         String baseUrl = "http://api.jisuapi.com/news/";
         Retrofit retrofit = new Retrofit.Builder().
@@ -68,12 +67,13 @@ public class ShareBiz {
                 addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         ITitleNewsApi iTitleNewsApi = retrofit.create(ITitleNewsApi.class);
-        iTitleNewsApi.getNewsList(type,start,num, Const.TITLE_NEWS_APP_KEY).
+        iTitleNewsApi.getNewsList(type, start, num, Const.TITLE_NEWS_APP_KEY).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).
                 subscribe(subscriber);
     }
-    //不使用rxjava
+
+    //不使用rxjava的网络访问
 //    public void getTitleNewsDateRETROFIT(Subscriber<TitleNews> subscriber,int start, int num, String type){
 //        //   http://api.jisuapi.com/news/get?channel=头条&start=0&num=10&appkey=yourappkey
 //        String baseUrl = "http://api.jisuapi.com/news/";
@@ -94,8 +94,8 @@ public class ShareBiz {
 //            }
 //        });
 //    }
-    public interface GetTitleNewsListener{
-      void   onDataGetEnd (List<TitleNews.ResultBean.ListBean> listBeen);
+    public interface GetTitleNewsListener {
+        void onDataGetEnd(List<TitleNews.ResultBean.ListBean> listBeen);
     }
 
 }

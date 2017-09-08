@@ -57,6 +57,7 @@ public class HotFragment extends BaseFragment implements ShareBiz.GetTitleNewsLi
     private void initView() {
         shareBiz = new ShareBiz();
         sr = (SwipeRefreshLayout) contentView.findViewById(R.id.sw_hot);
+        sr.setColorSchemeResources(R.color.mainblue,R.color.limegreen,R.color.colorAccent);
         rv = (RecyclerView) contentView.findViewById(R.id.rv_hot);
         headerRVAdapter = new HeaderRVAdapter(getActivity());
         gridLayoutManager = new GridLayoutManager(getActivity(), 2);

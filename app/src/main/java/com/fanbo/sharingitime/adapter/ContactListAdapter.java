@@ -32,9 +32,19 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         mContext = context;
     }
 
+    /**
+     * 添加数据
+     * @param data
+     */
     public void addData(List<UserEntity> data){
         userEntities = data;
         notifyDataSetChanged();
+    }
+    public UserEntity getItemData(int position){
+        if (userEntities==null){
+            return null;
+        }
+        return userEntities.get(position);
     }
 
     @Override

@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.fanbo.sharingitime.R;
 import com.fanbo.sharingitime.biz.MeBiz;
 import com.fanbo.sharingitime.entity.UserEntity;
+import com.fanbo.sharingitime.util.ExceptionUtil;
 import com.fanbo.sharingitime.widget.CircleImageView;
 
 /**
@@ -32,7 +33,7 @@ public class MeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-    contentView = inflater.inflate(R.layout.fragment_me, container, false);
+        contentView = inflater.inflate(R.layout.fragment_me, container, false);
         initView();
         addListener();
         return contentView;
@@ -46,9 +47,9 @@ public class MeFragment extends BaseFragment {
         civ = (CircleImageView) contentView.findViewById(R.id.civ_head);
         tvName = (TextView) contentView.findViewById(R.id.tv_name);
         meBiz = new MeBiz();
-        UserEntity userEntity=meBiz.getUser();
-        Glide.with(this).load(userEntity.getHeaderImg()).into(civ);
+        UserEntity userEntity = meBiz.getUser();
         tvName.setText(userEntity.getUsername());
+        Glide.with(this).load(userEntity.getHeaderImg()).into(civ);
     }
 
 }

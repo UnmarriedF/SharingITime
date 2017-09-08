@@ -7,6 +7,7 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 /**
+ * Retrofit网络访问接口
  * Created by fanbo on 2017-07-22.
  */
 
